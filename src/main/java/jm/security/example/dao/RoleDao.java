@@ -11,7 +11,7 @@ public interface RoleDao {
 
     void update(Role role);
 
-    Role getById(int id);
+    Role getById(long id);
 
     Role getByName(String roleName);
 }

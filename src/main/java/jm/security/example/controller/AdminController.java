@@ -45,7 +45,7 @@ public class AdminController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editUser(@PathVariable("id") int id, Model model) {
+    public String editUser(@PathVariable("id") long id, Model model) {
         model.addAttribute("user", userService.getById(id));
         model.addAttribute("role", roleService.allRoles());
         return "edit-user";
@@ -57,7 +57,7 @@ public class AdminController {
         return "redirect:/admin";
     }
     @DeleteMapping("/delete/{id}")
-    public String deleteUser(@PathVariable("id") int id) {
+    public String deleteUser(@PathVariable("id") long id) {
         userService.delete(id);
         return "redirect:/admin";
     }

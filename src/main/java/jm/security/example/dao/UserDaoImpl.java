@@ -36,7 +36,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getById(int id) {
+    public User getById(long id) {
         return entityManager.find(User.class, id);
     }
 
@@ -47,7 +47,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(long id) {
         entityManager.createQuery("delete from User o where o.id=:id").setParameter("id", id).executeUpdate();
 
     }
@@ -61,16 +61,6 @@ public class UserDaoImpl implements UserDao {
     }
 
 
-//    private final Map<String, User> userMap = Collections.singletonMap("test",
-//            new User(1L, "test", "test", Collections.singleton(new Role(1L, "ROLE_USER",users)))); // name - уникальное значение, выступает в качестве ключа Map
-//
-//    @Override
-//    public User getUserByName(String name) {
-//        if (!userMap.containsKey(name)) {
-//            return null;
-//        }
-//
-//        return userMap.get(name);
-//    }
+
 }
 

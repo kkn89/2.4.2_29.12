@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public User getById(int id) {
+    public User getById(long id) {
         return userDao.getById(id);
     }
 
@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void delete(int id) {
+    public void delete(long id) {
         userDao.delete(id);
 
     }
