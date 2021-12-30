@@ -50,7 +50,7 @@ public class AdminController {
         model.addAttribute("role", roleService.allRoles());
         return "edit-user";
     }
-    @PatchMapping("/edit/{id}")
+    @PostMapping("/edit/{id}")
     public String editUser(@ModelAttribute User user, @RequestParam("roles") String[] role) {
         user.setRoles(roleService.getRoleSet(role));
         userService.update(user);
