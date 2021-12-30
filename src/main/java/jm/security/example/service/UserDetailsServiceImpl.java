@@ -10,29 +10,29 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
-@Service
-public class UserDetailsServiceImpl implements UserDetailsService {
-
-    private UserService userService;
-
-    @Autowired
-    public UserDetailsServiceImpl(UserService userService) {
-        this.userService = userService;
-    }
-
-    public User findByUsername(String username) {
-        return userService.getUserByName(username);
-    }
-    // «Пользователь» – это просто Object. В большинстве случаев он может быть
-    //  приведен к классу UserDetails.
-    // Для создания UserDetails используется интерфейс UserDetailsService, с единственным методом:
-    @Override
+    @Service
     @Transactional
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = findByUsername(username);
-        if (user == null) {
-            throw new UsernameNotFoundException(String.format("User '%s' not found", username));
+    public class UserDetailsServiceImpl implements UserDetailsService {
+
+        private UserService userService;
+
+        @Autowired
+        public UserDetailsServiceImpl(UserService userService) {
+            this.userService = userService;
         }
-        return user;
-    }
+
+        public User findByUsername(String username) {
+            return userService.getUserByName(username);
+        }
+        // «Пользователь» – это просто Object. В большинстве случаев он может быть
+        //  приведен к классу UserDetails.
+        // Для создания UserDetails используется интерфейс UserDetailsService, с единственным методом:
+        @Override
+        public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+            User user = findByUsername(username);
+            if (user == null) {
+                throw new UsernameNotFoundException(String.format("User '%s' not found", username));
+            }
+            return user;
+        }
 }
