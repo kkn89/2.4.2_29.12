@@ -2,6 +2,7 @@ package jm.security.example.dao;
 
 import jm.security.example.model.Role;
 
+import java.util.HashSet;
 import java.util.List;
 
 public interface RoleDao {
@@ -14,4 +15,6 @@ public interface RoleDao {
     Role getById(long id);
 
     Role getByName(String roleName);
+
+    HashSet<Role> getRoleSet(String[] roleName);
 }

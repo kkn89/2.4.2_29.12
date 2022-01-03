@@ -1,5 +1,7 @@
 package jm.security.example.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -33,7 +35,8 @@ public class User implements UserDetails {
     @Column(name = "email")
     private String email;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @Fetch(FetchMode.JOIN)
     @JoinTable(
             name = "users_roles"
             , joinColumns = @JoinColumn(name = "users_id")
@@ -63,13 +66,13 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    public User(int age, String name, String username, String password, String email) {
-        this.age = age;
-        this.name = name;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-    }
+//    public User(int age, String name, String username, String password, String email) {
+//        this.age = age;
+//        this.name = name;
+//        this.username = username;
+//        this.password = password;
+//        this.email = email;
+//    }
 
     public Long getId() {
         return id;
@@ -118,7 +121,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles;
+        return getRoles();
     }
 
     @Override

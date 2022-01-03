@@ -51,11 +51,7 @@ public class RoleServiceImpl implements RoleService{
     }
 
     @Override
-    public HashSet getRoleSet(String[] role) {
-        Set<Role> roleSet = new HashSet<>();
-        for (String roles : role) {
-            roleSet.add(roleDao.getByName(roles));
-        }
-        return (HashSet) roleSet;
+    public HashSet<Role> getRoleSet(String[] roleName) {
+       return roleDao.getRoleSet(roleName);
     }
 }

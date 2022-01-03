@@ -16,7 +16,7 @@ public interface RoleService {
 
     Role getByName(String roleName);
 
-    public HashSet getRoleSet(String[] role);
+    HashSet<Role> getRoleSet(String[] roleName);
 
 
 }

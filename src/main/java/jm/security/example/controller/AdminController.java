@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -38,8 +39,8 @@ public class AdminController {
         return "user-info";
     }
     @PostMapping("/new")
-    public String newUser(@ModelAttribute User user, @RequestParam("roles") String[] role) {
-        user.setRoles(roleService.getRoleSet(role));
+    public String newUser(@ModelAttribute User user, @RequestParam(value = "nameRoles") String[] nameRoles) {
+        user.setRoles(roleService.getRoleSet(nameRoles));
         userService.saveUser(user);
         return "redirect:/admin";
     }
@@ -50,9 +51,9 @@ public class AdminController {
         model.addAttribute("role", roleService.allRoles());
         return "edit-user";
     }
-    @PostMapping("/edit/{id}")
-    public String editUser(@ModelAttribute User user, @RequestParam("roles") String[] role) {
-        user.setRoles(roleService.getRoleSet(role));
+    @PutMapping(value = "/edit/{id}")
+    public String editUser(@ModelAttribute User user, @RequestParam(value = "nameRoles") String[] nameRoles) {
+        user.setRoles(roleService.getRoleSet(nameRoles));
         userService.update(user);
         return "redirect:/admin";
     }
