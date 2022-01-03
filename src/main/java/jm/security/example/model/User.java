@@ -66,13 +66,6 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-//    public User(int age, String name, String username, String password, String email) {
-//        this.age = age;
-//        this.name = name;
-//        this.username = username;
-//        this.password = password;
-//        this.email = email;
-//    }
 
     public Long getId() {
         return id;
