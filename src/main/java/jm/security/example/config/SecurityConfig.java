@@ -64,7 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/", "/user")
                 //указываем что будет видно ролям Admin и User
-                .hasAnyRole("ADMIN, USER")
+                .hasAnyRole("ADMIN", "USER")
                 .antMatchers("/**")
                 .hasAnyRole("ADMIN")
                 .and()
